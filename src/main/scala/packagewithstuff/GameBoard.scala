@@ -56,15 +56,17 @@ case class GameBoard(rows: Int, cols: Int){
       }
     }
   }
-
+//TODO finish countAlive function
   /**
    *  Returns the number of "alive" cells on the board
    */
 
   def countAlive(): Unit ={
-    for(i <- 0 until rows){
-
-    }
+    var count = 0
+    for(i <- 0 until rows)
+      for(j <- 0 until cols)
+        if(board(i)(j) == 1) count += 1
+    return count
   }
 
 }

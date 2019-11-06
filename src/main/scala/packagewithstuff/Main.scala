@@ -13,11 +13,5 @@ object Main {
     board.randomize(.05)
     board.printBoard()
 
-
-
-
-
-
-
   }
 }

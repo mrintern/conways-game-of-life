@@ -15,13 +15,15 @@ case class GameBoardSpec() extends FlatSpec{
 
   "the wipe method" should "set all cells to zero" in{
     val gameBoard = new GameBoard(10,5)
-//    for(i <- 0 until gameBoard.rows)
-//      for(j <- 0 until gameBoard.cols)
-//
+
     for(i <- 0 until gameBoard.rows)
       assert(gameBoard.board(i).forall(_ == 0))
-
-    gameBoard.board.map(xs => xs.forall(_ == 0)).forall(_.equals(true))
+    //TODO: ask Goncalo Castro about line of code below
+    //gameBoard.board.map( xs => xs.forall(_ == 0)).forall(_.equals(true) )
   }
 
+  "the count method" should "return the number of cells that are 'alive' in the GameBoard" in{
+
+  }
 }
+
