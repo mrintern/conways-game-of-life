@@ -1,29 +1,87 @@
 package packagewithstuff
 
-import org.scalatest.FlatSpec
+import org.scalatest.{Matchers, WordSpec}
 
 /**
  * This is where the tests for GameBoard lives
  */
-
-case class GameBoardSpec() extends FlatSpec{
-  "the GameBoardSpec constructor" should "produce a 2d array of size ROWS x COLUMNS" in{
-    val gameBoard = new GameBoard(10,5)
-    assert(gameBoard.board.length == 10)
-    assert(gameBoard.board(0).length == 5)
+// TODO: Test that board only contains 0 or 1 at every function
+// TODO: Show the type of every variable by using 'alt + enter'
+// TODO: get advice on testing random method
+class GameBoardSpec extends WordSpec with Matchers {
+  "the GameBoardSpec constructor" should {
+    "given a size of zero should return none" in {
+      val actual: Option[GameBoard] = GameBoard(size = 0)
+      val expected: Option[GameBoard] = None
+      assert(actual equals expected)
+    }
+    "given a size of 1 should return none" in {
+      val actual: Option[GameBoard] = GameBoard(size = 1)
+      val expected: Option[GameBoard] = None
+      assert(actual equals expected)
+    }
+    "initialize all the cells on the board to 0" in {
+      val actual = GameBoard(size = 10).get
+      for(i <- 0 until actual.size)
+        assert(actual.board(i).forall(_ == 0))
+    }
   }
 
-  "the wipe method" should "set all cells to zero" in{
-    val gameBoard = new GameBoard(10,5)
-
-    for(i <- 0 until gameBoard.rows)
-      assert(gameBoard.board(i).forall(_ == 0))
-    //TODO: ask Goncalo Castro about line of code below
-    //gameBoard.board.map( xs => xs.forall(_ == 0)).forall(_.equals(true) )
+  "the wipe method" should {
+    "given a GameBoard with only 0's, return a GameBoard of only 0's" in {
+      val game = GameBoard(size = 10).get
+      for(i <- 0 until game.size)
+        assert(game.board(i).forall(_ == 0))
+    }
+    "given a GameBoard with 1 alive cell, return a GameBoard of only 0's" in {
+      val game = GameBoard(size = 10).get
+      game.board(5)(5) = 1
+      game.wipe
+      for(i <- 0 until game.size)
+        assert(game.board(i).forall(_ == 0))
+    }
+    "given a GameBoard with 5 alive cells, return a GameBoard of only 0's" in {
+      val game = GameBoard(size = 10).get
+      game.board(5)(0) = 1
+      game.board(4)(0) = 1
+      game.board(3)(0) = 1
+      game.board(2)(0) = 1
+      game.board(1)(0) = 1
+      game.wipe
+      for(i <- 0 until game.size)
+        assert(game.board(i).forall(_ == 0))
+    }
   }
 
-  "the count method" should "return the number of cells that are 'alive' in the GameBoard" in{
+  "the randomize method" should{
+    "return a game board with 0, 1, or many alive cells" in {
 
+    }
+  }
+
+  "the countAlive method" should {
+    "return zero if no cells are alive on the current GameBoard" in {
+      val game = GameBoard(size = 10).get
+      val expected = 0
+      for(i <- 0 until game.size)
+        assert(game.board(i).forall(_ == expected))
+    }
+    "return 1 if one cell is alive on the current GameBoard" in {
+      val game: GameBoard = GameBoard(size = 10).get
+      game.board(5)(5) = 1
+      val actual: Int = game.countAlive()
+      val expected = 1
+      assert(actual equals expected)
+    }
+    "return 5 if five cells are alive on the current GameBoard " in {
+      val game = GameBoard(size = 10).get
+      game.board(5)(0) = 1
+      game.board(4)(0) = 1
+      game.board(3)(0) = 1
+      game.board(2)(0) = 1
+      game.board(1)(0) = 1
+      val actual = game.countAlive()
+    }
   }
 }
 
