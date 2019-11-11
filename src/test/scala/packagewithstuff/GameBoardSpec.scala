@@ -8,6 +8,7 @@ import org.scalatest.{Matchers, WordSpec}
 // TODO: Test that board only contains 0 or 1 at every function
 // TODO: Show the type of every variable by using 'alt + enter'
 // TODO: get advice on testing random method
+// TODO
 class GameBoardSpec extends WordSpec with Matchers {
   "the GameBoardSpec constructor" should {
     "given a size of zero should return none" in {
@@ -53,7 +54,7 @@ class GameBoardSpec extends WordSpec with Matchers {
     }
   }
 
-  "the randomize method" should{
+  "the randomize method" should {
     "return a game board with 0, 1, or many alive cells" in {
 
     }
@@ -82,6 +83,19 @@ class GameBoardSpec extends WordSpec with Matchers {
       game.board(1)(0) = 1
       val actual = game.countAlive()
     }
-  }
+  }/*
+  "the countNeighbors method" should {
+    "return None if the x,y coordinates it receives point to a dead cell" in {
+
+    }
+    "given an x value that is out of bounds, raise an error" in {
+      val game = GameBoard(10).get
+      game.countNeighbors(x = -1, y = 0)
+    }
+    "given a y value that is out of bounds, raise an error" in {
+      val game = GameBoard(10).get
+      game.countNeighbors(x = 0, y = -1)
+    }
+  }*/
 }
 
