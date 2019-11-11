@@ -22,7 +22,7 @@ class GameBoardSpec extends WordSpec with Matchers {
       assert(actual equals expected)
     }
     "initialize all the cells on the board to 0" in {
-      val actual = GameBoard(size = 10).get
+      val actual: GameBoard = GameBoard(size = 10).get
       for(i <- 0 until actual.size)
         assert(actual.board(i).forall(_ == 0))
     }
@@ -30,19 +30,19 @@ class GameBoardSpec extends WordSpec with Matchers {
 
   "the wipe method" should {
     "given a GameBoard with only 0's, return a GameBoard of only 0's" in {
-      val game = GameBoard(size = 10).get
+      val game: GameBoard = GameBoard(size = 10).get
       for(i <- 0 until game.size)
         assert(game.board(i).forall(_ == 0))
     }
     "given a GameBoard with 1 alive cell, return a GameBoard of only 0's" in {
-      val game = GameBoard(size = 10).get
+      val game: GameBoard = GameBoard(size = 10).get
       game.board(5)(5) = 1
       game.wipe
       for(i <- 0 until game.size)
         assert(game.board(i).forall(_ == 0))
     }
     "given a GameBoard with 5 alive cells, return a GameBoard of only 0's" in {
-      val game = GameBoard(size = 10).get
+      val game: GameBoard = GameBoard(size = 10).get
       game.board(5)(0) = 1
       game.board(4)(0) = 1
       game.board(3)(0) = 1
@@ -83,19 +83,54 @@ class GameBoardSpec extends WordSpec with Matchers {
       game.board(1)(0) = 1
       val actual = game.countAlive()
     }
-  }/*
+  }
+  //TODO: finish this test
   "the countNeighbors method" should {
     "return None if the x,y coordinates it receives point to a dead cell" in {
-
-    }
+      val game: GameBoard = GameBoard(10).get
+      assert(game.countNeighbors(x=5,y=5) == None)
+    }/*
     "given an x value that is out of bounds, raise an error" in {
-      val game = GameBoard(10).get
+      val game: GameBoard = GameBoard(10).get
       game.countNeighbors(x = -1, y = 0)
     }
     "given a y value that is out of bounds, raise an error" in {
-      val game = GameBoard(10).get
+      val game: GameBoard = GameBoard(10).get
       game.countNeighbors(x = 0, y = -1)
+    }*/
+    //zero neighbors
+    "return 0 if the cell at the x,y coordinates has zero neighbors" in {
+      val game: GameBoard = GameBoard(10).get
+      game.board(5)(5) = 1
+      assert(game.countNeighbors(x=5,y=5) == Some(0))
+
     }
-  }*/
+    //one neighbor
+    "return 1 if the cell at the x,y coordinates has 1 neighbor " in {
+      val game: GameBoard = GameBoard(10).get
+      game.board(5)(5) = 1
+      game.board(5)(6) = 1
+      assert(game.countNeighbors(x=5,y=5) == 1)
+    }
+    //8 neighbors
+    "return 8 if the cell at the x,y coordinates has 8 neighbors " in {
+      val game: GameBoard = GameBoard(10).get
+      val (x,y) = (5,5)
+      game.board(x)(y) = 1
+      game.board(x-1)(y) = 1
+      game.board(x)(y-1) = 1
+      game.board(x+1)(y) = 1
+      game.board(x)(y+1) = 1
+      game.board(x-1)(y-1) = 1
+      game.board(x+1)(y-1) = 1
+      game.board(x-1)(y+1) = 1
+      game.board(x+1)(y+1) = 1
+      assert(game.countNeighbors(x=x,y=y) == Some(8))
+
+    }
+
+
+
+  }
 }
 
