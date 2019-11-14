@@ -53,18 +53,21 @@ case class GameBoard(size: Int){
    *    -bound: a double between 0.01 and .99 that determines the probability that any individual cell becomes 1 ('alive')
    *      example: bound = .1 means there is a 10% chance any given cell is a 1 ('alive')
    */
-  def randomize(bound: Double): Unit ={
+  def randomize(bound: Double, value: Int = 0): Unit ={
     for(i <- 0 until size){
       for(j <- 0 until size){
-        val choice = Random.between(0.01,0.99)
-        board(i)(j) = if(choice >= bound) 0 else 1
+        // value is a parameter for testing purposes only
+        // it verifies that board has been populated using randomness
+        val choice = if(value == 0) Random.between(0.01,0.99) else value
+        board(i)(j) = if(choice == value) 9 else if(choice >= bound) 0 else 1
+
       }
     }
   }
   /**
    *  Returns the number of "alive" cells on the current board
    */
-  def countAlive(): Int ={
+  def countAlive: Int ={
     var alive = 0
     for(i <- 0 until size)
       for(j <- 0 until size)
@@ -72,12 +75,11 @@ case class GameBoard(size: Int){
     alive
   }
   //TODO: raise-error functionality
-  //TODO: test multiple assignment syntax
+  //TODO: count neighbors of live and dead cells
+  //TODO: How can return 'None' if coordinates are out of bounds?
   def countNeighbors(x: Int, y: Int): Option[Int] ={
     // check that original coordinates are not out-of-bounds
     if(x < 0 || y < 0 || x >= board.length || y >= board.length)
-      println("Error! Error!")
-    if(board(x)(y) == 0)
       None
     else {
       // define neighbor coordinates
@@ -91,6 +93,7 @@ case class GameBoard(size: Int){
       val (bottomRightX: Int, bottomRightY: Int) = (x + 1, y + 1)
 
       // check that neighbor coordinates are not out-of-bounds
+      // count neighbors
       val top = if (topX < 0 || topX >= board.length) 0 else board(topX)(topY)
       val left = if (leftY < 0 || leftY >= board.length) 0 else board(leftX)(leftY)
       val bottom = if (bottomX < 0 || bottomX >= board.length) 0 else board(bottomX)(bottomY)
@@ -101,7 +104,7 @@ case class GameBoard(size: Int){
       val bottomRight = if (bottomRightX < 0 || bottomRightY < 0 || bottomRightX >= board.length || bottomRightY >= board.length) 0 else board(bottomRightX)(bottomRightY)
 
       // count 'alive' neighbors
-      val count: Option[Int] = Some(top + left + bottom + right + topLeft + bottomLeft + topRight + bottomRight)
+      val count: Some[Int] = Some(top + left + bottom + right + topLeft + bottomLeft + topRight + bottomRight)
       // return
       count
     }
