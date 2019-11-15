@@ -55,9 +55,9 @@ class GameBoardSpec extends WordSpec with Matchers {
   }
 
   "the randomize method" should {
-    "fill the entire board with the value 9 if the value parameter is not equal to 0" in {
+    "fill the entire board with the tester 9 if the tester parameter is not equal to 0" in {
       val game = GameBoard(size = 10).get
-      game.randomize(bound = 0.5, value = 1)
+      game.randomize(bound = 0.5, tester = 1)
       val expected = 9
       for(i <- 0 until game.board.length)
         assert(game.board(i).forall(_ == expected))

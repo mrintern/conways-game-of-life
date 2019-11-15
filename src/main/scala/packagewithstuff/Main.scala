@@ -11,6 +11,8 @@ object Main {
       case None => 3
     }
 */
-
+    val game: GameBoard = GameBoard(size = 10).get
+    game.randomize()
+    val evolve: Evolve = Evolve(game = game)
   }
 }
