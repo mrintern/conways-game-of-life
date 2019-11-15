@@ -29,8 +29,8 @@ case class GameBoard(size: Int){
   def printBoard(): Unit ={
     println("")
     for(i <- 0 until size){
-      for(j <- 0 until size){
-        print(s"${board(i)(j)}  ")
+      for(j <- 0 until size) {
+        if (board(i)(j) == 0) print(" . ") else if(board(i)(j) == 1) print(" * ")
       }
       println("")
     }

@@ -22,13 +22,13 @@ case class Evolve(game :GameBoard){
       case _ => 8008135
     }
   }
- def nextGeneration(): GameBoard ={
-    val size: Int = game.board.length
-    val newGame: GameBoard = GameBoard(size = size).get
-    for(i <- 0 until size)
-      for(j <- 0 until size){
-        newGame.board(i)(j) = survival(x = i,y = j)
-      }
-    newGame
+ def nextGeneration(): GameBoard = {
+   val size: Int = game.board.length
+   val newGame: GameBoard = GameBoard(size = size).get
+   for (i <- 0 until size)
+     for (j <- 0 until size) {
+       newGame.board(i)(j) = survival(x = i, y = j)
+     }
+   newGame
  }
 }
