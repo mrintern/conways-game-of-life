@@ -6,18 +6,29 @@ case class Evolve(game :GameBoard){
    * returning 1 means the cell is "alive"
    * returning 0 means the cell is "dead"
    */
-  def survival(x: Int,y: Int): Int={
+  def survival(x: Int,y: Int): Int= {
+
     val cell: Int = game.board(x)(y)
     val neighbors: Option[Int] = game.countNeighbors(x = x,y = y)
-    // if cell is alive, follow these rules
-    if(cell == 1)
-      if(neighbors.get < 2 || neighbors.get > 3) 0 else if(neighbors.get == 2 || neighbors.get == 3) 1
-    // if cell is dead, follow these rules
-    else if(cell == 0)
-      if(neighbors.get == 3) 1 else 0
 
-    //if the method reaches this far without returning a value, print error. Return 400
-    println(s"ERROR Cell at coordinates (${x},${y}) = ${cell}. Expected 0 or 1")
-    400
+    (cell, neighbors ) match {
+      case a if (cell == 1 && neighbors.get < 2) => 0
+      case b if (cell == 1 && neighbors.get > 3) => 0
+      case d if (cell == 1 && neighbors.get == 2) => 1
+      case e if (cell == 1 && neighbors.get == 3) => 1
+      case f if (cell == 0 && neighbors.get < 3) => 0
+      case g if (cell == 0 && neighbors.get > 3) => 0
+      case h if (cell == 0 && neighbors.get == 3) => 1
+      case _ => 8008135
+    }
   }
+ def nextGeneration(): GameBoard ={
+    val size: Int = game.board.length
+    val newGame: GameBoard = GameBoard(size = size).get
+    for(i <- 0 until size)
+      for(j <- 0 until size){
+        newGame.board(i)(j) = survival(x = i,y = j)
+      }
+    newGame
+ }
 }

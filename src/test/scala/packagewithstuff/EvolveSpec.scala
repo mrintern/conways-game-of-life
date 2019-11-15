@@ -71,7 +71,12 @@ class EvolveSpec() extends WordSpec with Matchers{
     }
   }
 
+  // TODO: the nextGeneration method
+/*
+  "the nextGeneration method" should {
+    "return a GameBoard object of equal size to the input GameBoard object" in {
 
-
+    }
+  }*/
 }
 

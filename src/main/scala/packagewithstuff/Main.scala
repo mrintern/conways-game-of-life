@@ -11,8 +11,23 @@ object Main {
       case None => 3
     }
 */
-    val game: GameBoard = GameBoard(size = 10).get
-    game.randomize()
-    val evolve: Evolve = Evolve(game = game)
+    //initialize
+    val gen1: GameBoard = GameBoard(size = 10).get
+    //populate board
+    gen1.randomize(bound = .10)
+    //print
+    gen1.printBoard()
+    // initalize
+    val evolve: Evolve = Evolve(game = gen1)
+    // EVOLVE
+    val gen2 = evolve.nextGeneration()
+    // print gen 2
+    gen2.printBoard()
+    // EVOLVE AGAIN
+    val gen3 = evolve.nextGeneration()
+    // print gen 3
+    gen3.printBoard()
+
+
   }
 }
