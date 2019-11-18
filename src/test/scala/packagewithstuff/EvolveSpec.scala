@@ -11,7 +11,6 @@ class EvolveSpec() extends WordSpec with Matchers{
       val evolve: Evolve = Evolve(game = game)
       val expected: Int = 0
       assert(evolve.survival(x = x, y = y) == expected)
-
     }
     "return 0 if the living cell at the x,y coordinates has MORE than 3 neighbors" in {
       val game: GameBoard =  GameBoard(10).get
