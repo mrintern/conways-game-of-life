@@ -14,8 +14,8 @@ object GameBoard {
  *  GameBoard Constructor:
  *  Creates our square matrix, using the size parameter, to serve as the game board for our conway's "Game of Life" program.
  *  All cells in the matrix are initialized to 0.
- *  @param size - Determines the size of the square matrix that is our GameBoard.
- *                Ex: size = 4 produces a 4x4 square matrix
+ *  @param size: Int, Determines the size of the square matrix that is our GameBoard.
+ *                    Ex: size = 4 produces a 4x4 square matrix
  */
 case class GameBoard(size: Int){
 
@@ -46,9 +46,11 @@ case class GameBoard(size: Int){
     }
   }
   /**
-   *  Randomly populates board using probability
-   *  @param bound: a double between 0.01 and .99 that determines the probability that any individual cell becomes 1 ('alive')
-   *               Ex: bound = .1 means there is a 10% chance any given cell is a 1 ('alive')
+   *  Randomly populates Game Board with either 0 or 1
+   *  @param bound: Double, a double between 0.01 and .99 that determines the probability that any individual cell becomes 1 ('alive')
+   *                Ex: bound = .1 means there is a 10% chance any given cell is a 1 ('alive')
+   *  @param tester: Int, this variable is only used in the testing of this function. It helps verify the board has been populated using
+   *                the Random library.
    */
   def randomize(bound: Double, tester: Int = 0): Unit ={
     for(i <- 0 until size){
@@ -72,15 +74,13 @@ case class GameBoard(size: Int){
         if(board(i)(j) == 1) alive += 1
     alive
   }
-  //TODO: raise-error functionality
-  //TODO: count neighbors of live and dead cells
   /**
-   *  @param x - the x coordinate of a cell on the GameBoard
-   *  @param y - the y coordinate of a cell on the GameBoard
-   *  @return - Some(Int) if the x,y coordinates point to a cell on the board. None otherwise.
-   *            This integer represents the number of neighbors surrounding a cell. In Conway's
-   *            Game of Life, the number of neighbors a cell has determines whether it will be
-   *            alive or dead in the next generation.
+   * This integer represents the number of neighbors surrounding a cell. In Conway's
+   * Game of Life, the number of neighbors a cell has determines whether it will be
+   * alive or dead in the next generation.
+   *  @param x: Int, the x coordinate of a cell on the GameBoard
+   *  @param y: Int, the y coordinate of a cell on the GameBoard
+   *  @return   Some(Int) if the x,y coordinates point to a cell on the board. None otherwise.
    */
   def countNeighbors(x: Int, y: Int): Option[Int] ={
     // check that original coordinates are not out-of-bounds
