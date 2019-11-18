@@ -2,8 +2,9 @@ package packagewithstuff
 
 case class Evolve(game :GameBoard){
   /**
-   * given the coordinates of a single cell, determine whether the cell will be alive or dead based on the rules of the game.
-   * returning 1 means the cell is "alive"
+   * given the coordinates of a single cell, determine whether the cell will be alive or dead in the next generation based on the rules of the game.
+   * then, return either 1 or 0
+   *  returning 1 means the cell is "alive"
    * returning 0 means the cell is "dead"
    */
   def survival(x: Int,y: Int): Int= {
