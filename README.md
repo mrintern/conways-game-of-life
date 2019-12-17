@@ -6,7 +6,7 @@ This is a project written in scala that implements Conways Game of Life. The "Co
 ### Requirements
 1. Java 8 JDK or higher https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 2. Intellij IDEA https://www.jetbrains.com/idea/
-3. Intellij Scala Plugin (install through intellij)
+3. Scala Plugin (install through intellij)
 4. Git https://desktop.github.com/
 
 ### Running the code
