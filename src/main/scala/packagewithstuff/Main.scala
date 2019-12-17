@@ -15,6 +15,7 @@ object Main {
           print("===========================================================")
           generation.printBoard()
           println()
+          Thread.sleep(500)
           val evolve: Evolve = Evolve(game = generation)
           val generation2 = evolve.nextGeneration()
           num match {
