@@ -42,7 +42,6 @@ class EvolveSpec() extends WordSpec with Matchers{
       val evolve: Evolve = Evolve(game = game)
       val expected: Int = 0
       assert(evolve.survival(x = x, y = y) == expected)
-
     }
     "return 0 if the dead cell at the x,y coordinates has MORE than 3 neighbors" in {
       val game: GameBoard =  GameBoard(10).get
@@ -55,7 +54,6 @@ class EvolveSpec() extends WordSpec with Matchers{
       val evolve: Evolve = Evolve(game = game)
       val expected: Int = 0
       assert(evolve.survival(x = x, y = y) == expected)
-
     }
     "return 1 if the dead cell at the x,y coordinates has EXACTLY 3 neighbors" in {
       val game: GameBoard =  GameBoard(10).get
@@ -70,12 +68,12 @@ class EvolveSpec() extends WordSpec with Matchers{
     }
   }
 
-  // TODO: the nextGeneration method
-/*
+  // TODO: the nextGeneration method test
+
   "the nextGeneration method" should {
-    "return a GameBoard object of equal size to the input GameBoard object" in {
+    "be run on a GameBoard object of size >= 8" in {
 
     }
-  }*/
+  }
 }
 
