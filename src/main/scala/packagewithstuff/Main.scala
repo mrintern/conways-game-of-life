@@ -3,6 +3,22 @@ package packagewithstuff
 object Main {
   def main(args: Array[String]): Unit = {
 
+      val x: Array[Int] = Array(0,0,5,6,8,67,4,5,5,6)
+      val dbl = (x: Int) => x * x
+      def logic(x: Int): Int = {
+          x match{
+              case a if x == 0 => 999
+              case _ => x
+          }
+      }
+
+      x.map(dbl)
+      val sick = x.map(logic)
+      sick.foreach(println)
+
+
+/*
+
       val gen1: GameBoard = GameBoard(size = 20).get
       // space ship formation
       gen1.board(4)(4) = 1
@@ -28,5 +44,6 @@ object Main {
       val evolve4: Evolve = Evolve(game = gen4)
       val gen5 = evolve4.nextGeneration()
       gen5.printBoard()
+*/
   }
 }
