@@ -11,5 +11,5 @@ This is a project written in scala that implements Conways Game of Life. *Conway
 
 ### Running the code
 1. Open Intellij and click: *Checkout from Version Control -> Git*
-3. Under URL, paste the following: https://github.com/nick781/conways-game-of-life.git
+3. Paste the URL of this repo
 4. Run the code in intellij from `Main` and enjoy the output :)
